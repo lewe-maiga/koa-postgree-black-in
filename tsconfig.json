@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "outDir": "dist",
+        "strict": true,
+        "target": "ES5",
+        "watch": true,
+        "module": "commonjs",
+        "noEmitOnError": false,
+        "lib": ["ES2015"]
+    },
+
+    "include": [
+        "src/*",
+        "routes/*",
+        "controllers/*",
+        "src/*",
+        "lib/*",
+        "middleware/*",
+        "database/postsgre.ts"
+    ],
+    "exclude": ["node_modules/**/*", "views/**/*"]
+}

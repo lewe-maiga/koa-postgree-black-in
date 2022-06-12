@@ -1,0 +1,74 @@
+-- SQLite
+--PRAGMA foreign_keys = ON;
+
+DROP TABLE IF EXISTS upload;
+DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS admin;
+DROP TABLE IF EXISTS artists;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS description;
+
+
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL
+);
+CREATE TABLE IF NOT EXISTS upload(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(255) NOT NULL,
+    url VARCHAR(255) NOT NULL,
+    size INTEGER NOT NULL,
+    type VARCHAR(15) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS artists(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    pseudo VARCHAR(200) NOT NULL,
+    image INTEGER NOT NULL,
+    FOREIGN KEY (image) REFERENCES upload(id)
+);
+
+CREATE TABLE IF NOT EXISTS posts(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title VARCHAR(50) NOT NULL,
+    created_at DATETIME NOT NULL,
+    duration VARCHAR(10) NOT NULL,
+    tempo VARCHAR(10) NOT NULL,
+    genre VARCHAR(50) NOT NULL,
+    price INTEGER NOT NULL,
+    format VARCHAR(20) NOT NULL,
+    image INTEGER NOT NULL, 
+    music INTEGER NOT NULL, 
+    FOREIGN KEY (image) REFERENCES upload(id),
+    FOREIGN KEY (music) REFERENCES upload(id)
+);
+
+
+CREATE TABLE IF NOT EXISTS admin(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS description(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    heading_main VARCHAR(255) NOT NULL,
+    content_main TEXT NOT NULL,
+    heading_secondary VARCHAR(255) NOT NULL,
+    content_secondary TEXT NOT NULL
+);
+
+
+SELECT * FROM posts;
+SELECT * FROM upload;
+SELECT * FROM admin;
+SELECT * FROM artists;
+SELECT * FROM users;
+SELECT COUNT(id) FROM description;
+
+
+
+
+
+
